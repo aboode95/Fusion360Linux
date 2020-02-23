@@ -68,15 +68,21 @@ cd ..
 
 # Patch and Install Fusion 360
 
-wget https://dl.appstreaming.autodesk.com/production/installers/Fusion%20360%20Admin%20Install.exe
+Get the Fusion360 Installer:
 
-sudo apt-get install p7zip-full git curl
+    wget https://dl.appstreaming.autodesk.com/production/installers/Fusion%20360%20Admin%20Install.exe
 
-7z x -osetup/ "Fusion 360 Admin Install.exe"
+You will need 7zip, git, and curl for the next steps. so install them with this command:
 
-curl -Lo setup/platform.py https://github.com/python/cpython/raw/3.5/Lib/platform.py
+    sudo apt-get install p7zip-full git curl
 
-sed -i 's/winver._platform_version or //' setup/platform.py
+Now, lets continue:
+
+    7z x -osetup/ "Fusion 360 Admin Install.exe"
+
+    curl -Lo setup/platform.py https://github.com/python/cpython/raw/3.5/Lib/platform.py
+
+    sed -i 's/winver._platform_version or //' setup/platform.py
 
 wine setup/streamer.exe -p deploy -g -f log.txt --quiet
 
